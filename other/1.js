@@ -26,10 +26,10 @@ function fn2 (arr){
 
 const data = [["a","b"],["e"],["d","e","f"]]
 
-console.log(ff(data))
+console.log(fn1(data))
 // out: 
 // [ 'aed', 'bed', 'aee', 'bee', 'aef', 'bef' ]
 
-console.log(gg(data))
+console.log(fn2(data))
 // out: 
 // [ 'aed', 'bed', 'aee', 'bee', 'aef', 'bef' ]
