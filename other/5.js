@@ -163,11 +163,42 @@ function random(num,range = 10000){
   return arr;
 }
 
-const numList = random(30000);
+function quickSort2 (arr,startIndex,stopIndex) {
+  const warp = (arr,index1, index2) => {
+    const tmp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = tmp;
+  }
+  if(startIndex===undefined || stopIndex===undefined){
+    startIndex = 0;
+    stopIndex = arr.length-1;
+  }
+  if(startIndex>=stopIndex) return;
+  let currentIndex = startIndex;
+  let splitIndex = startIndex;
+  const num = arr[startIndex];
+  while(currentIndex<stopIndex){
+    currentIndex ++;
+    if(arr[currentIndex]<=num){
+      splitIndex ++;
+      warp(arr,splitIndex,currentIndex)
+    }
+  }
+  warp(arr,splitIndex,startIndex)
+  quickSort2(arr,startIndex,splitIndex-1);
+  quickSort2(arr,splitIndex+1,stopIndex);
+  return arr;
+}
 
-console.time('自己的排序算法')
+const numList = random(10000);
+
+console.time('自己的归并排序算法')
 sort([...numList])
-console.timeEnd('自己的排序算法')
+console.timeEnd('自己的归并排序算法')
+
+console.time('自己的快速排序算法')
+quickSort2([...numList])
+console.timeEnd('自己的快速排序算法')
 
 console.time('快速排序')
 quickSort([...numList])
