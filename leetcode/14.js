@@ -20,4 +20,21 @@ var longestCommonPrefix = function(strs) {
   return strs[0].slice(0,index)
 };
 
+// 解法2
+var longestCommonPrefix = function(strs) {
+  if(strs.length === 0) return '';
+  if(strs.length === 1) return strs[0];
+  const pos = strs[0];
+  for(let x = 0; x< pos.length; x++){
+    const byte = pos[x];
+    for(let y = 1; y<strs.length; y++){
+      if(strs[y][x] !== byte){
+        return pos.slice(0,x)
+      }
+    }
+  }
+  return strs[0];
+};
+
 console.log(longestCommonPrefix(["",""]))
+console.log(longestCommonPrefix(["flower","flow","flight"]))
